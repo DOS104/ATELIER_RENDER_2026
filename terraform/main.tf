@@ -22,14 +22,6 @@ resource "render_web_service" "flask_app" {
   plan   = "free"
   region = "frankfurt"
 
-resource "render_postgres" "database" {
-  name          = "flask-postgres-${var.github_actor}"
-  plan          = "free"
-  region        = "frankfurt"
-  version       = "16"
-  database_name = "appdb"
-  database_user = "appuser"
-}
 
   runtime_source = {
     image = {
@@ -43,4 +35,13 @@ resource "render_postgres" "database" {
       value = "production"
     }
   }
+}
+
+resource "render_postgres" "database" {
+  name          = "flask-postgres-${var.github_actor}"
+  plan          = "free"
+  region        = "frankfurt"
+  version       = "16"
+  database_name = "appdb"
+  database_user = "appuser"
 }
